@@ -4,19 +4,26 @@
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
+MACHINES = {
+  :left  => '192.168.11.101',
+  :right => '192.168.11.102',
+}
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.hostmanager.enabled = false
+  config.hostmanager.enabled = true
 
   config.vm.box = "centos-6.x-64bit-puppet.3.x"
   config.vm.box_url = "http://packages.vstone.eu/vagrant-boxes/centos-6.x-64bit-latest.box"
 
   # create two boxen
-  for boxname in ['left','right'] do
+  MACHINES.each do |boxname, ip_address|
 
       config.vm.define boxname do |box|
 
-          box.vm.hostname = boxname+".testbed"
+          box.vm.hostname = "#{boxname}.testbed"
+
+          box.vm.network "private_network", ip: ip_address
 
           box.vm.provider "virtualbox" do |vb|
             vb.gui = true
