@@ -26,7 +26,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           box.vm.network "private_network", ip: ip_address
 
           box.vm.provider "virtualbox" do |vb|
-            vb.gui = true
+            vb.gui = false
 
             # Add memory
             vb.customize ["modifyvm", :id, "--memory", "1024"]
@@ -53,6 +53,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             puppet.manifests_path = "manifests"
             puppet.manifest_file  = "site.pp"
             puppet.module_path = ['modules']
+            puppet.hiera_config_path = 'hiera/00_hiera_config.yaml'
           end
     end
   end

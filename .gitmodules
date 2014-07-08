@@ -1,0 +1,9 @@
+[submodule "modules/corosync"]
+	path = modules/corosync
+	url = https://github.com/puppetlabs/puppetlabs-corosync
+[submodule "modules/stdlib"]
+	path = modules/stdlib
+	url = https://github.com/puppetlabs/puppetlabs-stdlib
+[submodule "modules/lvm"]
+	path = modules/lvm
+	url = https://github.com/puppetlabs/puppetlabs-lvm
