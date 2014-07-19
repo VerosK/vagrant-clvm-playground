@@ -2,7 +2,7 @@
 :backends:
   - yaml
 :yaml:
-  :datadir: '.'
+  :datadir: 'hiera'
 :hierarchy:
   - "%{::hostname}"
   - nodes

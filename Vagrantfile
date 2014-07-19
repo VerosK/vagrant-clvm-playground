@@ -5,12 +5,13 @@
 VAGRANTFILE_API_VERSION = "2"
 
 MACHINES = {
-  :left  => '192.168.11.101',
-  :right => '192.168.11.102',
+  'left'  => '192.168.11.101',
+  'right' => '192.168.11.102',
 }
 
 machines_yaml = File.new('hiera/nodes.yaml','w')
 machines_yaml.write({'nodes' => MACHINES}.to_yaml)
+machines_yaml.close()
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
@@ -57,6 +58,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             puppet.manifest_file  = "site.pp"
             puppet.module_path = ['modules']
             puppet.hiera_config_path = 'hiera/00_hiera_config.yaml'
+            puppet.working_directory = "/vagrant"
           end
     end
   end
