@@ -9,6 +9,9 @@ MACHINES = {
   :right => '192.168.11.102',
 }
 
+machines_yaml = File.new('hiera/nodes.yaml','w')
+machines_yaml.write({'nodes' => MACHINES}.to_yaml)
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.hostmanager.enabled = true
