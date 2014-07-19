@@ -35,13 +35,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             vb.customize ["modifyvm", :id, "--memory", "1024"]
 
             # create shared disk
-            vb.customize ["createhd", "--filename", 'second.vdi', "--size", "2048", '--variant', 'fixed']
-            vb.customize ["modifyhd", 'second.vdi', "--type", "shareable"]
+            vb.customize ["createhd", "--filename", '.vagrant/shared.vdi', "--size", "2048", '--variant', 'fixed']
+            vb.customize ["modifyhd", '.vagrant/shared.vdi', "--type", "shareable"]
 
             # connect the disk to SATA port 4
             vb.customize ["storageattach", :id, '--storagectl', 'SATA Controller',
                     '--port', 4, '--device', 0, '--type', 'hdd',
-                    '--medium', 'second.vdi']
+                    '--medium', '.vagrant/shared.vdi']
 
             # Set serial and model number to the disk
             vb.customize ["setextradata", :id,
